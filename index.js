@@ -3,7 +3,9 @@ const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const tripRoute = require("./routes/trip");
+const cors = require('cors');
 
+app.use(cors({origin: true, credentials: true}));
 dotenv.config();
 app.use(express.json());
 mongoose.connect(process.env.MONGO_URL)
