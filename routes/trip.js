@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const Trip = require("../models/Trip");
 
-console.log("Welcome to TripRoute");
 //CREATE A NEW TRIP
 router.post("/", (req, res) => {
     console.log("Here we go saving your new trip over the database");
     const newTrip = new Trip(req.body);
+    console.log("The request is ", req.body);
     newTrip.save()
     .then(savedTrip => res.status(200).json(savedTrip))
     .catch(err => res.status(500).json(err));
@@ -22,9 +22,7 @@ router.put("/:id", (req, res) => {
 
 //DELETE THE TRIP
 router.delete("/:id", (req, res) => {
-    Trip.findByIdAndDelete(req.params.id, {
-        $set:req.body
-    }, {new:true})
+    Trip.findByIdAndDelete(req.params.id)
     .then(DeletedTrip => res.status(200).json("The trip has been deleted"))
     .catch(err => res.status(500).json(err));
 })
@@ -38,6 +36,7 @@ router.get(":/id", (req, res)=>{
 
 //FOR THE PACKAGES PAGE
 router.get("/", (req, res) => {
+    console.log("I will fetch you all the trips!!");
     Trip.find()
     .then(AllTrips => res.status(200).json(AllTrips))
     .catch(err => res.status(500).json(err));
