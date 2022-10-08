@@ -14,5 +14,14 @@
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vaibhav-Fulara/mhill_backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vaibhav-Fulara/mhill_backend/issues"
+  },
+  "homepage": "https://github.com/Vaibhav-Fulara/mhill_backend#readme",
   "description": ""
 }
