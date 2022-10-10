@@ -26,6 +26,14 @@ router.delete("/:id", (req, res) => {
     .catch(err => res.status(500).json(err));
 })
 
+//GET ALL TRIPS
+router.get("/all", (req, res) => {
+    console.log("I will fetch you all the trips!!");
+    Trip.find()
+    .then(AllTrips => res.status(200).json(AllTrips))
+    .catch(err => res.status(500).json(err));
+})
+
 //GET A TRIP
 router.get("/:id", (req, res)=>{
     Trip.findById(req.params.id)
@@ -33,18 +41,10 @@ router.get("/:id", (req, res)=>{
     .catch(err => res.status(500).json(err));
 })
 
-// // //GET MOST VISITED TRIPS
-// router.get("/", (req, res) => {
-//     Trip.find({mostVis:true})
-//     .then(MostVisTrips => res.status(200).json(MostVisTrips))
-//     .catch(err => res.status(500).json(err));
-// })
-
-//GET ALL TRIPS
+//GET MOST VISITED TRIPS
 router.get("/", (req, res) => {
-    console.log("I will fetch you all the trips!!");
-    Trip.find()
-    .then(AllTrips => res.status(200).json(AllTrips))
+    Trip.find({mostVis:true})
+    .then(MostVisTrips => res.status(200).json(MostVisTrips))
     .catch(err => res.status(500).json(err));
 })
 
