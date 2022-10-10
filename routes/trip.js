@@ -5,7 +5,6 @@ const Trip = require("../models/Trip");
 router.post("/", (req, res) => {
     console.log("Here we go saving your new trip over the database");
     const newTrip = new Trip(req.body);
-    console.log("The request is ", req.body);
     newTrip.save()
     .then(savedTrip => res.status(200).json(savedTrip))
     .catch(err => res.status(500).json(err));
@@ -28,13 +27,20 @@ router.delete("/:id", (req, res) => {
 })
 
 //GET A TRIP
-router.get(":/id", (req, res)=>{
+router.get("/:id", (req, res)=>{
     Trip.findById(req.params.id)
     .then(trip => res.status(200).json(trip))
     .catch(err => res.status(500).json(err));
 })
 
-//FOR THE PACKAGES PAGE
+// // //GET MOST VISITED TRIPS
+// router.get("/", (req, res) => {
+//     Trip.find({mostVis:true})
+//     .then(MostVisTrips => res.status(200).json(MostVisTrips))
+//     .catch(err => res.status(500).json(err));
+// })
+
+//GET ALL TRIPS
 router.get("/", (req, res) => {
     console.log("I will fetch you all the trips!!");
     Trip.find()

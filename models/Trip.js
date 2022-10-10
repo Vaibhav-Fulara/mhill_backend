@@ -17,6 +17,13 @@ const TripSchema = new mongoose.Schema({
         type:String,
         required:false
     },
+    duration:{
+        type:String
+    },
+    months:{
+        type:String,
+        required:false
+    },
     desc:{
         type:String,
         required:true
