@@ -27,25 +27,8 @@ const TripSchema = new mongoose.Schema({
     desc:{
         type:Array
     },
-    day1:{
-        type:String,
-        required:false
-    },
-    day2:{
-        type:String,
-        required:false
-    },
-    day3:{
-        type:String,
-        required:false
-    },
-    day4:{
-        type:String,
-        required:false
-    },
-    day5:{
-        type:String,
-        required:false
+    days:{
+        type:Array
     },
     mostVis:{
         type:Boolean,
