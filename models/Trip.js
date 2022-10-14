@@ -20,15 +20,15 @@ const TripSchema = new mongoose.Schema({
     duration:{
         type:String
     },
-    months:{
-        type:String,
-        required:false
-    },
     desc:{
         type:Array
     },
     days:{
         type:Array
+    },
+    seasons:{
+        type:String,
+        required:false
     },
     mostVis:{
         type:Boolean,
