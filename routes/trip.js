@@ -3,7 +3,7 @@ const Trip = require("../models/Trip");
 
 //CREATE A NEW TRIP
 router.post("/", (req, res) => {
-    console.log("Here we go saving your new trip over the database");
+    // console.log("Here we go saving your new trip over the database");
     const newTrip = new Trip(req.body);
     newTrip.save()
     .then(savedTrip => res.status(200).json(savedTrip))
@@ -28,7 +28,7 @@ router.delete("/:id", (req, res) => {
 
 //GET ALL TRIPS
 router.get("/all", (req, res) => {
-    console.log("I will fetch you all the trips!!");
+    // console.log("I will fetch you all the trips!!");
     Trip.find()
     .then(AllTrips => res.status(200).json(AllTrips))
     .catch(err => res.status(500).json(err));
@@ -36,7 +36,7 @@ router.get("/all", (req, res) => {
 
 //GET SEASON TRIPS
 router.get("/seasons/:season", (req, res) => {
-    console.log("Here you get according to the season", req.params.season);
+    // console.log("Here you get according to the season", req.params.season);
     Trip.find({seasons:req.params.season})
     .then(seasonTrips => res.status(200).json(seasonTrips))
     .catch(err => res.status(500).json(err));

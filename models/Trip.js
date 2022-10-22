@@ -28,7 +28,7 @@ const TripSchema = new mongoose.Schema({
     },
     seasons:{
         type:String,
-        required:false
+        required:true
     },
     mostVis:{
         type:Boolean,
