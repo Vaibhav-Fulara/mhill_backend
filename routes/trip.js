@@ -1,5 +1,35 @@
 const router = require("express").Router();
 const Trip = require("../models/Trip");
+const nodemailer = require("nodemailer");
+
+// //POST CONTACT INFORMATION
+// router.post("/contact", (req, res) => {
+//     var transporter = nodemailer.createTransport({
+//         service: 'gmail',
+//         auth: {
+//           user: 'mhill642@gmail.com',
+//           pass: 'Ghingran05'
+//         }
+//       });
+      
+//       var mailOptions = {
+//         from: 'mhilladventure@gmail.com',
+//         to: 'mhilladventure@gmail.com',
+//         subject: 'Sending Email using Node.js',
+//         text: 'That was easy!'
+//       };
+      
+//       transporter.sendMail(mailOptions, function(error, info){
+//         if (error) {
+//           console.log(error);
+//           res.status(500).json(error);
+//         } else {
+//           console.log('Email sent: ' + info.response);
+//           res.status(200).json("Email sent!");
+
+//         }
+//       });
+// })
 
 //CREATE A NEW TRIP
 router.post("/", (req, res) => {
@@ -55,5 +85,6 @@ router.get("/", (req, res) => {
     .then(MostVisTrips => res.status(200).json(MostVisTrips))
     .catch(err => res.status(500).json(err));
 })
+
 
 module.exports = router;
