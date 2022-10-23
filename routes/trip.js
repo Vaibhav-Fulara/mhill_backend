@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Trip = require("../models/Trip");
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer");
 
 // //POST CONTACT INFORMATION
 // router.post("/contact", (req, res) => {
