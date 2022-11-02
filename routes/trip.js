@@ -67,19 +67,16 @@ router.get("/all", (req, res) => {
 //GET SEASON TRIPS
 router.get("/seasons/:season", (req, res) => {
     // console.log("Here you get according to the season", req.params.season);
-    if(req.params.season ===  "expedition")
-    {
-        console.log("Time for expedition!!!");
-        Trip.find( { price: { $gte: 10} } )
-        .then(expeditionTrip => {console.log(expeditionTrip); res.status(200).json(expeditionTrip)})
-        .catch(err => res.status(500).json(err));
+    if(req.params.season==="expedition"){
+        Trip.find({seasons:"expedition"})
+            .then(seasonTrips => res.status(200).json(seasonTrips))
+            .catch(err => res.status(500).json(err));
     }
-    else
-    {
-        const both = "summer-and-winter";
-        Trip.find({ $or: [{seasons:req.params.season}, {seasons: both}] })
-        .then(seasonTrips => res.status(200).json(seasonTrips))
-        .catch(err => res.status(500).json(err));
+    else {
+    const both = "summer-and-winter";
+    Trip.find({ $or: [{seasons:req.params.season}, {seasons: both}] })
+    .then(seasonTrips => res.status(200).json(seasonTrips))
+    .catch(err => res.status(500).json(err));
     }
 })
 

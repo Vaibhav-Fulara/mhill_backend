@@ -26,6 +26,9 @@ const TripSchema = new mongoose.Schema({
     days:{
         type:Array
     },
+    head:{
+        type:Array
+    },
     seasons:{
         type:String,
         required:true
