@@ -67,7 +67,7 @@ router.get("/all", (req, res) => {
 //GET SEASON TRIPS
 router.get("/seasons/:season", (req, res) => {
     // console.log("Here you get according to the season", req.params.season);
-    if(req.params.season==="expedition"){
+    if(req.params.season==="expeditions"){
         Trip.find({seasons:"expedition"})
             .then(seasonTrips => res.status(200).json(seasonTrips))
             .catch(err => res.status(500).json(err));
