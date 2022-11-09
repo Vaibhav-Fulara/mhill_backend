@@ -1,5 +1,11 @@
 const mongoose = require("mongoose");
 
+const Itinerary = new mongoose.Schema({
+    head: String,
+    detail: [String],
+    points: [String]
+});
+
 const TripSchema = new mongoose.Schema({
     destination:{
         type:String,
@@ -9,26 +15,14 @@ const TripSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    photo:{
-        type:String,
-        required:false
-    },
+    photo: String,
     price:{
         type:Number,
         required:true
     },
-    duration:{
-        type:String
-    },
-    desc:{
-        type:Array
-    },
-    days:{
-        type:Array
-    },
-    head:{
-        type:Array
-    },
+    duration:String,
+    desc:[String],
+    itinerary: [Itinerary],
     seasons:{
         type:String,
         required:true
