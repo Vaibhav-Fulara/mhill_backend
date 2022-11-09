@@ -73,8 +73,17 @@ router.get("/all", (req, res) => {
 router.get("/seasons/:cat", (req, res) => {
   // console.log("Here you get according to the season", req.params.season);
   if (req.params.cat === "expeditions") {
-    Trip.find({price: 21000})
-      .then((seasonTrips) => res.status(200).json(seasonTrips))
+    // Trip.find({price: 21000})
+    //   .then((seasonTrips) => res.status(200).json(seasonTrips))
+    //   .catch((err) => res.status(500).json(err));
+    Trip.find()
+      .then((seasonTrips) => 
+      {
+        const expTrips = seasonTrips.filter((trip => {
+            if(trip.price>=25000) return trip;
+        }))
+        res.status(200).json(expTrips);
+      })
       .catch((err) => res.status(500).json(err));
   } else {
     const both = "summer-and-winter";
