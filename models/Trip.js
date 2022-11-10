@@ -15,7 +15,7 @@ const TripSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    photo: String,
+    photos: [String],
     price:{
         type:Number,
         required:true
