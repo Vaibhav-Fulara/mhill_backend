@@ -3,6 +3,7 @@ const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const tripRoute = require("./routes/trip");
+const reviewRoute = require("./routes/review");
 const cors = require('cors');
 
 app.use(cors({origin: true, credentials: true}));
@@ -14,6 +15,7 @@ mongoose.connect(process.env.MONGO_URL)
     
 
 app.use("/trips", tripRoute);
+app.use("/reviews", reviewRoute);
 
 const port = process.env.PORT || 5000;
 
