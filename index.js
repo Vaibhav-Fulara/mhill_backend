@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const tripRoute = require("./routes/trip");
 const reviewRoute = require("./routes/review");
 const cors = require('cors');
+const authRoute = require("./routes/auth")
 
 app.use(cors({origin: true, credentials: true}));
 dotenv.config();
@@ -16,7 +17,7 @@ mongoose.connect(process.env.MONGO_URL)
 
 app.use("/trips", tripRoute);
 app.use("/reviews", reviewRoute);
-
+app.use("/auth", authRoute)
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
