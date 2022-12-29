@@ -38,7 +38,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
 app.use("/trips", tripRoute);
 app.use("/reviews", reviewRoute);
 app.use("/auth", authRoute)
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 50000;
 
 app.listen(port, () => {
     console.log("The backend is running!!");
