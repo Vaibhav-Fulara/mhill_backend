@@ -23,11 +23,4 @@ router.delete("/:id", (req, res) => {
     .catch(err => res.status(500).json(err));
 })
 
-// GET THE LIST OF ONLY ALLOWED REVIEWS
-router.get("/", (req, res) => {
-    Review.find({display:"Yes"})
-    .then(reviews => res.status(200).json(reviews))
-    .catch(err => res.status(500).json(err));
-})
-
 module.exports = router;

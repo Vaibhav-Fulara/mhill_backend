@@ -8,13 +8,10 @@ const cors = require('cors');
 const authRoute = require("./routes/auth");
 const multer = require("multer");
 const path = require("path");
-// const uuidv4 = require("uuid/v4");
-// const DIR = "./images/";
 
 app.use(cors({origin: true, credentials: true}));
 dotenv.config();
 app.use(express.json());
-
 app.use("/images", express.static(path.join(__dirname, "/images")));
 
 
@@ -31,13 +28,14 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-app.post("/upload", upload.single("file"), (req, res) => {
-        res.status(200).json("The file has been uploaded!");
-    })
 
 app.use("/trips", tripRoute);
 app.use("/reviews", reviewRoute);
 app.use("/auth", authRoute)
+app.post("/upload", upload.single("file"), (req, res) => {
+    res.status(200).json("The file has been uploaded!");
+})
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
