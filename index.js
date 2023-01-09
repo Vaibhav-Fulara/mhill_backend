@@ -32,11 +32,15 @@ const upload = multer({ storage: storage });
 app.use("/trips", tripRoute);
 app.use("/reviews", reviewRoute);
 app.use("/auth", authRoute)
+<<<<<<< HEAD
 app.post("/upload", upload.single("file"), (req, res) => {
     res.status(200).json("The file has been uploaded!");
 })
 
 const port = process.env.PORT || 5000;
+=======
+const port = process.env.PORT || 50000;
+>>>>>>> c64c052ad25c49d746cd7711ab8674f3d9ca01a4
 
 app.listen(port, () => {
     console.log("The backend is running!!");
