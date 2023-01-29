@@ -1,47 +1,60 @@
-const express = require("express")
+const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const tripRoute = require("./routes/trip");
 const reviewRoute = require("./routes/review");
-const cors = require('cors');
+const cors = require("cors");
 const authRoute = require("./routes/auth");
 const multer = require("multer");
 const path = require("path");
 
-app.use(cors({origin: true, credentials: true}));
+app.use(cors({ origin: true, credentials: true }));
 dotenv.config();
 app.use(express.json());
-app.use("/images", express.static(path.join(__dirname, "/images")));
+// console.log("IT IS ", __dirname)
+app.use("/images/", express.static("./images"));
 
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(console.log("Connected to MongoDB"))
+  .catch((err) => console.log(err));
 
-mongoose.connect(process.env.MONGO_URL)
-    .then(console.log("Connected to MongoDB"))
-    .catch((err)=>console.log(err));
-    
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "images");
-    }, filename: (req, file, cb) => {
-        cb(null, req.body.name);
+  destination: (req, files, cb) => {
+    cb(null, "./images");
+  },
+  filename: (req, file, cb) => {
+    req.body.name.map = (elem) =>{
+      cb(null, elem);
     }
+  }
 });
 
-const upload = multer({ storage: storage });
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype.includes("jpeg") ||
+    file.mimetype.includes("png") ||
+    file.mimetype.includes("jpg") ||
+    file.mimetype.includes("jfif")
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({ storage: storage, fileFilter: fileFilter});
 
 app.use("/trips", tripRoute);
 app.use("/reviews", reviewRoute);
-app.use("/auth", authRoute)
-<<<<<<< HEAD
-app.post("/upload", upload.single("file"), (req, res) => {
-    res.status(200).json("The file has been uploaded!");
-})
+app.use("/auth", authRoute);
+app.post("/upload", upload.array("files", 10), (req, res) => {
+  res.status(200).json("The file has been uploaded!");
+});
 
-const port = process.env.PORT || 5000;
-=======
 const port = process.env.PORT || 50000;
->>>>>>> c64c052ad25c49d746cd7711ab8674f3d9ca01a4
 
 app.listen(port, () => {
-    console.log("The backend is running!!");
-})
+  console.log("The backend is running!!");
+});

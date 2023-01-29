@@ -73,7 +73,7 @@ router.get("/all", (req, res) => {
 router.get("/seasons/:cat", (req, res) => {
   // console.log("Here you get according to the season", req.params.season);
   if (req.params.cat === "expeditions") {
-    // Trip.find({price: 21000})
+    // Trip.find({price: {$gte: 25000}})
     //   .then((seasonTrips) => res.status(200).json(seasonTrips))
     //   .catch((err) => res.status(500).json(err));
     Trip.find()
