@@ -12,7 +12,6 @@ const path = require("path");
 app.use(cors({ origin: true, credentials: true }));
 dotenv.config();
 app.use(express.json());
-// console.log("IT IS ", __dirname)
 app.use("/images/", express.static("./images"));
 
 mongoose
@@ -24,10 +23,8 @@ const storage = multer.diskStorage({
   destination: (req, files, cb) => {
     cb(null, "./images");
   },
-  filename: (req, file, cb) => {
-    req.body.name.map = (elem) =>{
-      cb(null, elem);
-    }
+  filename: (req, file, cb) => {  
+    cb(null, file.originalname.split('.')[0] + '-' + Math.floor(Date.now()/1000) + '.' + file.originalname.split('.')[1]);
   }
 });
 
